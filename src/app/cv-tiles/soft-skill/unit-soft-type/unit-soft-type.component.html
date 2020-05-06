@@ -1,0 +1,24 @@
+<app-navbar></app-navbar>
+
+<br/>
+<div class="container">
+  <button type="button" class="btn btn-info mb-3" [routerLink]="['/admin','cv']">&#8592; Retour</button>
+  <br>
+  <div class="card">
+    <form [formGroup]="softTypeForm" (ngSubmit)="onSubmit()">
+      <div class="card-header">
+        Soft: <b>{{types.name}}</b>
+      </div>
+      <div class="card-body">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="nom">Nom</span>
+          </div>
+          <input type="text" class="form-control" aria-describedby="nom" formControlName="nom" [(ngModel)]="types.name">
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="softTypeForm.invalid">Modifier</button>
+        <button type="button" class="btn btn-danger" (click)="deleteType(types.id)">Supprimer</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<app-navbar></app-navbar>
+<br/>
+<div class="container">
+  <button type="button" class="btn btn-info mb-3" [routerLink]="['/admin','cv']">&#8592; Retour</button>
+  <br>
+  <div class="card">
+    <form [formGroup]="softForm" (ngSubmit)="onSubmit()">
+      <div class="card-header">
+        Soft: <b>{{soft.titre}}</b>
+      </div>
+      <div class="card-body">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="type">Type</span>
+          </div>
+          <select class="form-control" aria-describedby="type" formControlName="type" [(ngModel)]="softType[0].name">
+            <option *ngFor="let type of softType">{{type.name}}</option>
+          </select>
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="titre">Titre</span>
+          </div>
+          <input type="text" class="form-control" aria-describedby="titre" formControlName="titre"
+                 [(ngModel)]="soft.titre">
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="pourcentage">Pourcentage</span>
+          </div>
+          <input type="number" class="form-control" aria-describedby="pourcentage" formControlName="pourcentage"
+                 [(ngModel)]="soft.pourcentage">
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="softForm.invalid">Modifier</button>
+        <button type="button" class="btn btn-danger" (click)="deleteSoft(soft.id)">Supprimer</button>
+      </div>
+    </form>
+  </div>
+</div>

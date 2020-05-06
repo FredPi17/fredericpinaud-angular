@@ -1,0 +1,110 @@
+<br/>
+<h4>Connaissance (logiciels, langues, etc..)</h4>
+<div class="row">
+  <div class="col-3">
+    <div class="card">
+      <form [formGroup]="softForm" (ngSubmit)="onSubmit()">
+        <div class="card-header">
+          Ajouter un soft skill
+        </div>
+        <div class="card-body">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-describedby="type">Type</span>
+            </div>
+            <select class="form-control" aria-describedby="type" id="type" formControlName="type">
+              <option *ngFor="let type of softTypes" [ngValue]="type.name">{{type.name}}</option>
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-describedby="titre">Titre</span>
+            </div>
+            <input type="text" class="form-control" id="titre" formControlName="titre">
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-describedby="pourcentage">Pourcentage</span>
+            </div>
+            <input type="text" class="form-control" id="pourcentage" formControlName="pourcentage">
+          </div>
+          <button type="submit" class="btn btn-primary" [disabled]="softForm.invalid">Créer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="col-2">
+    <div class="card">
+      <form [formGroup]="softTypeForm" (ngSubmit)="onSubmitType()">
+        <div class="card-header">
+          Ajouter un type de soft skill
+        </div>
+        <div class="card-body">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-describedby="nom">Nom</span>
+            </div>
+            <input type="text" class="form-control" id="nom" formControlName="nom">
+          </div>
+          <button type="submit" class="btn btn-primary" [disabled]="softTypeForm.invalid">Créer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="col-3">
+    <div class="card">
+      <div class="card-header">Liste des type de soft skills</div>
+      <div class="card-body">
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let f of softTypes">
+            <th scope="{{f.id}}">{{f.id}}</th>
+            <td>{{f.name}}</td>
+            <td>
+              <button class="btn btn-success" [routerLink]="['/admin', 'cv', 'soft', 'type', f.id]">Modifier</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="card">
+      <div class="card-header">Liste des soft skills</div>
+      <div class="card-body">
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Type</th>
+            <th scope="col">Titre</th>
+            <th scope="col">Pourcentage</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let f of softSkills">
+            <th scope="{{f.id}}">{{f.id}}</th>
+            <td>{{f.type}}</td>
+            <td>{{f.titre}}</td>
+            <td>{{f.pourcentage}}</td>
+            <td>
+              <button class="btn btn-success" [routerLink]="['/admin', 'cv', 'soft', f.id]">Modifier</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+</div>

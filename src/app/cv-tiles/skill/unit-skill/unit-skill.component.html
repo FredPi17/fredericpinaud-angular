@@ -1,0 +1,50 @@
+<app-navbar></app-navbar>
+<br/>
+<div class="container">
+  <button type="button" class="btn btn-info mb-3" [routerLink]="['/admin','cv']">&#8592; Retour</button>
+  <br>
+  <div class="card">
+    <form [formGroup]="skillForm" (ngSubmit)="onSubmit()">
+      <div class="card-header">
+        Formation: <b>{{skill.titre}}</b>
+      </div>
+      <div class="card-body">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="date_debut">Date de début</span>
+          </div>
+          <input type="date" class="form-control" aria-describedby="date_debut" formControlName="date_debut"
+                 [(ngModel)]="skill.date_debut">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="date_fin">Date de fin</span>
+          </div>
+          <input type="date" class="form-control" aria-describedby="date_fin" formControlName="date_fin"
+                 [ngModel]="skill.date_fin">
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="titre">Titre</span>
+          </div>
+          <input type="text" class="form-control" aria-describedby="titre" formControlName="titre"
+                 [(ngModel)]="skill.titre">
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="entreprise">Entreprise</span>
+          </div>
+          <input type="text" class="form-control" aria-describedby="entreprise" formControlName="entreprise"
+                 [(ngModel)]="skill.entreprise">
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Description</span>
+          </div>
+          <textarea class="form-control" aria-label="With textarea" formControlName="description"
+                    [(ngModel)]="skill.description"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="skillForm.invalid">Modifier</button>
+        <button type="button" class="btn btn-danger" (click)="deleteSkill(skill.id)">Supprimer</button>
+      </div>
+    </form>
+  </div>
+</div>

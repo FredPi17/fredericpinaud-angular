@@ -1,0 +1,41 @@
+<div class="container">
+  <br/>
+  <h4 class="align-center">Infos de {{user.username.toUpperCase()}}</h4>
+
+  <div class="card">
+    <form [formGroup]="userInfoForm" (ngSubmit)="onSubmitInfos()">
+      <div class="card-header">
+        Informations générales
+      </div>
+      <div class="card-body">
+        <div class="form-group ">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" id="username" formControlName="username"
+                 placeholder="{{user.username}}">
+        </div>
+        <div class="form-group ">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" formControlName="email" placeholder="{{user.email}}">
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="userInfoForm.invalid">Modifier</button>
+      </div>
+    </form>
+  </div>
+  <br/>
+
+  <div class="card">
+    <form [formGroup]="passwordForm" (ngSubmit)="onSubmitPassword()">
+      <div class="card-header">
+        Mot de passe
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" formControlName="password">
+        </div>
+        <button type="submit" class="btn btn-primary text-center" [disabled]="userInfoForm.invalid">Modifier</button>
+      </div>
+    </form>
+  </div>
+
+</div>

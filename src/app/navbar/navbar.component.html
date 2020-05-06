@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+          aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse">
+    <a class="navbar-brand active" [routerLink]="['/admin']">Administration</a>
+
+    <ul *ngIf="signedIn" class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/']">Voir site</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/admin','cv']">CV</a>
+      </li>
+    </ul>
+    <div class="align-right">
+      <ul class="navbar-nav mt-2 mt-lg-0">
+        <li class="nav-item">
+          <a [routerLink]="['/admin','user']" class="nav-link mr-sm-2">{{ username }}</a>
+        </li>
+        <li class="nav-item">
+          <form *ngIf="signedIn" [formGroup]="signOutForm" (ngSubmit)="onSubmit()">
+            <button class="btn btn-primary" type="submit">Se déconnecter</button>
+          </form>
+          <ul *ngIf="!signedIn" class="navbar-nav mt-2 mt-lg-0 mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" *ngIf="this.href == '/auth/signin'" [routerLink]="['/auth', 'signup']">Créer un
+                compte</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" *ngIf="this.href == '/auth/signup'" [routerLink]="['/auth','signin']">Se connecter</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

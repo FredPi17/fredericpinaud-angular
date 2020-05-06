@@ -1,0 +1,81 @@
+<br>
+<h4>Formations (école, certifications, etc..)</h4>
+<div class="row">
+  <div class="col-4">
+    <div class="card">
+      <form [formGroup]="educationForm" (ngSubmit)="onSubmit()">
+        <div class="card-header">
+          Ajouter une formation
+        </div>
+        <div class="card-body">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-describedby="date_debut">Date de début</span>
+            </div>
+            <input type="date" class="form-control" id="date_debut" formControlName="date_debut">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-describedby="date_fin">Date de fin</span>
+            </div>
+            <input type="date" class="form-control" id="date_fin" formControlName="date_fin">
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-describedby="titre">Titre</span>
+            </div>
+            <input type="text" class="form-control" id="titre" formControlName="titre">
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-describedby="lieu">Lieu</span>
+            </div>
+            <input type="text" class="form-control" id="lieu" formControlName="lieu">
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-describedby="description">Description</span>
+            </div>
+            <textarea type="text" class="form-control" id="description" formControlName="description"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" [disabled]="educationForm.invalid">Créer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="col-8">
+    <div class="container">
+      <br/>
+      <div class="card">
+        <div class="card-header">Liste des formations</div>
+        <div class="card-body">
+          <table class="table">
+            <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Date début</th>
+              <th scope="col">Date fin</th>
+              <th scope="col">Titre</th>
+              <th scope="col">Lieu</th>
+              <th scope="col">Description</th>
+              <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let f of formations">
+              <th scope="{{f.id}}">{{f.id}}</th>
+              <td>{{f.date_debut}}</td>
+              <td>{{f.date_fin}}</td>
+              <td>{{f.titre}}</td>
+              <td>{{f.lieu}}</td>
+              <td>{{f.description}}</td>
+              <td>
+                <button class="btn btn-success" [routerLink]="['/admin', 'cv', 'education', f.id]">Modifier</button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

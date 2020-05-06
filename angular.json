@@ -52,8 +52,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
+                  "maximumWarning": "100kb",
+                  "maximumError": "100kb"
                 }
               ]
             }
@@ -90,7 +90,16 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/jquery.min.js",
+              "src/assets/js/jquery.validate.js",
+              "src/assets/js/jquery.magnific-popup.js",
+              "src/assets/js/imagesloaded.pkgd.js",
+              "src/assets/js/isotope.pkgd.js",
+              "src/assets/js/jquery.slimscroll.js",
+              "src/assets/js/owl.carousel.js",
+              "src/assets/js/scripts.js"
+            ]
           }
         },
         "lint": {

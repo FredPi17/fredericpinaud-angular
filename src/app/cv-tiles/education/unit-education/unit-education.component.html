@@ -1,0 +1,50 @@
+<app-navbar></app-navbar>
+<br/>
+<div class="container">
+  <button type="button" class="btn btn-info mb-3" [routerLink]="['/admin','cv']">&#8592; Retour</button>
+  <br>
+  <div class="card">
+    <form [formGroup]="formationForm" (ngSubmit)="onSubmit()">
+      <div class="card-header">
+        Formation: <b>{{formation.titre}}</b>
+      </div>
+      <div class="card-body">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="date_debut">Date de début</span>
+          </div>
+          <input type="date" class="form-control" aria-describedby="date_debut" formControlName="date_debut"
+                 [(ngModel)]="formation.date_debut">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="date_fin">Date de fin</span>
+          </div>
+          <input type="date" class="form-control" aria-describedby="date_fin" formControlName="date_fin"
+                 [ngModel]="formation.date_fin">
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="titre">Titre</span>
+          </div>
+          <input type="text" class="form-control" aria-describedby="titre" formControlName="titre"
+                 [(ngModel)]="formation.titre">
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="lieu">Lieu</span>
+          </div>
+          <input type="text" class="form-control" aria-describedby="lieu" formControlName="lieu"
+                 [(ngModel)]="formation.lieu">
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Description</span>
+          </div>
+          <textarea class="form-control" aria-label="With textarea" formControlName="description"
+                    [(ngModel)]="formation.description"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="formationForm.invalid">Modifier</button>
+        <button type="button" class="btn btn-danger" (click)="deleteEducation(formation.id)">Supprimer</button>
+      </div>
+    </form>
+  </div>
+</div>

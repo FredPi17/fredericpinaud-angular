@@ -1,0 +1,33 @@
+<div class="container">
+  <br/>
+  <h4 class="align-center">Liste des utilisateurs</h4>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Username</th>
+      <th scope="col">Email</th>
+      <th scope="col">Actif</th>
+      <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let u of user">
+      <th scope="{{u.id}}">{{u.id}}</th>
+      <td>{{u.username}}</td>
+      <td>{{u.email}}</td>
+      <td>
+        <button *ngIf="u.active == false" class="btn btn-primary" (click)="activateUser(u.id)">Activer</button>
+        <button *ngIf="u.active == true" class="btn btn-warning" (click)="deactivateUser(u.id)">Désactiver</button>
+      </td>
+      <td *ngIf="u.active == true">
+        <button class="btn btn-danger" disabled>Supprimer</button>
+      </td>
+      <td *ngIf="u.active == false">
+        <button class="btn btn-danger" (click)="deleteUser(u.id)">Supprimer</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
