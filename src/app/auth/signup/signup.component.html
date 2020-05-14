@@ -18,7 +18,19 @@
           <input type="password" class="form-control" id="password" formControlName="password">
         </div>
         <button type="submit" class="btn btn-primary" [disabled]="signUpForm.invalid">Submit</button>
+        <div *ngIf="loading">
+          <div class="spinner-grow" role="status">
+          </div>
+          <span>Loading...</span>
+        </div>
       </form>
     </div>
+  </div>
+  <div *ngIf="error" class="alert alert-danger">
+    {{errorMessage}}
+  </div>
+  <div *ngIf="created" class="alert alert-success">
+    {{successMessage}}
+    <br>You will be redirected to login page !
   </div>
 </div>

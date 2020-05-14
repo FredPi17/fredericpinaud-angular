@@ -50,7 +50,6 @@ export class SigninComponent implements OnInit {
   }
 
   signinResult(result) {
-    console.log(result);
     this.loading = false;
     if (result.status === 'error') {
       this.loaded = false;
