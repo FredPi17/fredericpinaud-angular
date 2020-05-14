@@ -20,7 +20,13 @@
           </div>
           <span>Loading...</span>
         </div>
-        <div [innerHTML]="error"></div>
+        <div *ngIf="wrongCredential" class="alert alert-danger">
+          {{wrongCredentialMessage}}
+        </div>
+        <div *ngIf="loaded" class="alert alert-success">
+          {{signedInMessage}}
+          <br>Redirecting...
+        </div>
       </form>
     </div>
   </div>

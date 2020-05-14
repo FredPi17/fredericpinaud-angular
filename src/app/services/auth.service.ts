@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {Signin} from '../models/signin';
 import {SigninComponent} from '../auth/signin/signin.component';
 import {Signup} from '../models/signup';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,9 @@ export class AuthService {
   constructor(private router: Router, protected http: HttpClient) {
   }
 
-  signinUser(user: string, pass: string): any {
-    const req = this.http.post<Signin>('http://localhost:3000/admin/signin', {username: user, password: pass})
+  signinUser(user: string, pass: string): Observable<HttpResponse<string>> {
+    return this.http.post<string>('http://localhost:3000/admin/signin', {username: user, password: pass}, {observe: 'response'});
+    /*const req = this.http.post<Signin>('http://localhost:3000/admin/signin', {username: user, password: pass})
       .subscribe(
         res => { // Success
           if (res.accessToken) {
@@ -30,7 +32,7 @@ export class AuthService {
           alert(msg.error.message);
           window.location.reload();
         }
-      );
+      );*/
   }
 
   signupUser(user: string, pass: string, mail: string) {
