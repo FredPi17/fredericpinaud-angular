@@ -24,6 +24,7 @@ import {UnitEducationComponent} from './cv-tiles/education/unit-education/unit-e
 import {UnitSoftComponent} from './cv-tiles/soft-skill/unit-soft/unit-soft.component';
 import {UnitSkillComponent} from './cv-tiles/skill/unit-skill/unit-skill.component';
 import {UnitSoftTypeComponent} from './cv-tiles/soft-skill/unit-soft-type/unit-soft-type.component';
+import { RealisationsComponent } from './realisations/realisations.component';
 
 const appRoutes: Routes = [
   {path: 'admin', canActivate: [AuthGuardService], component: AdminComponent},
@@ -33,6 +34,7 @@ const appRoutes: Routes = [
   {path: 'admin/cv/soft/:id', canActivate: [AuthGuardService], component: UnitSoftComponent},
   {path: 'admin/cv/soft/type/:id', canActivate: [AuthGuardService], component: UnitSoftTypeComponent},
   {path: 'admin/cv/skill/:id', canActivate: [AuthGuardService], component: UnitSkillComponent},
+  {path: 'admin/realisations', canActivate: [AuthGuardService], component: RealisationsComponent},
   {path: 'auth/signup', component: SignupComponent},
   {path: 'auth/signin', component: SigninComponent},
   {path: '', component: CvComponent, pathMatch: 'full'},
@@ -59,6 +61,7 @@ const appRoutes: Routes = [
     UnitSoftComponent,
     UnitSkillComponent,
     UnitSoftTypeComponent,
+    RealisationsComponent,
   ],
   imports: [
     BrowserModule,
