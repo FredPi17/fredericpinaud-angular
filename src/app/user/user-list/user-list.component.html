@@ -29,5 +29,22 @@
     </tr>
     </tbody>
   </table>
-
+  <div *ngIf="activateUserOk" class="alert alert-success">
+    {{activateUserMessage}}
+  </div>
+  <div *ngIf="activationUserNok" class="alert alert-danger">
+    {{activateUserMessage}}
+  </div>
+  <div *ngIf="deactivateStatusOk" class="alert alert-success">
+    {{deactivateMessage}}
+  </div>
+  <div *ngIf="deactivateStatusNok" class="alert alert-danger">
+    {{deactivateMessage}}
+  </div>
+  <div *ngIf="deleteStatusOk" class="alert alert-success">
+    {{deleteMessage}}
+  </div>
+  <div *ngIf="deleteStatusNok" class="alert alert-danger">
+    {{deleteMessage}}
+  </div>
 </div>
