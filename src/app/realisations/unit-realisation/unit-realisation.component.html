@@ -3,7 +3,7 @@
   <button type="button" class="btn btn-info mb-3" [routerLink]="['/admin','realisations']">&#8592; Retour</button>
   <br>
   <div class="card">
-    <form [formGroup]="realForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="realForm">
       <div class="card-header">
         Réalisation: <b>{{realisation.titre}}</b>
       </div>
@@ -45,8 +45,8 @@
                         <input type="file" (change)="detectFile($event)" class="custom-file-input" id="image"
                                accept="image/*">
                         <label class="custom-file-label" for="image">Sélectionner image...</label>
-                        <p class="text-success" *ngIf="fileUploaded">Image chargée</p>
                     </div>
+                    <p class="text-success" *ngIf="fileUploaded">Image chargée</p>
                 </div>
         
                 <button type="button" class="btn btn-primary"data-toggle="modal" data-target="#modifier" [disabled]="realForm.invalid">Modifier</button>

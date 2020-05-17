@@ -22,6 +22,10 @@ export class RealisationsService {
     return this.http.get<Realisations[]>(this.apiUrlProject, {observe: 'response'});
   }
 
+  deleteRealisation(id): Observable<HttpResponse<Realisations>> {
+    return this.http.delete<Realisations>(this.apiUrlProject + id, {observe: 'response'});
+  }
+
   getRealisationById(idReal): Observable<HttpResponse<Realisations>> {
     return this.http.get<Realisations>(this.apiUrlProject + idReal, {observe: 'response'});
   }

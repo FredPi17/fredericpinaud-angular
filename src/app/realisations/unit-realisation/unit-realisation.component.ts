@@ -19,7 +19,7 @@ export class UnitRealisationComponent implements OnInit {
   realForm: FormGroup;
   Types: RealisationsTypes[];
   Categories: RealisationsCategories[];
-  realisation: Realisations;
+  realisation?: Realisations;
   fileIsUploading: boolean = false;
   fileUploaded: boolean = false;
   fileUrl: string = '';
@@ -77,6 +77,18 @@ export class UnitRealisationComponent implements OnInit {
 
   deleteRealisation(id) {
     console.log("deleting realisation with id: ", id);
+    this.realService.deleteRealisation(id).subscribe((res: HttpResponse<Realisations>) => {
+      if(res.body.status == "success") {
+        this.deleteSuccess = true;
+        this.deleteSuccessMessage = res.body.message;
+        setTimeout(()=> {this.deleteSuccess = false; this.router.navigate(['/admin','realisations']), 3000});
+      }
+      else if (res.body.status == "error") {
+        this.deleteError = true;
+        this.deleteErrorMessage = res.body.message;
+        setTimeout(() => {this.deleteError = false}, 3000);
+      }
+    })
   }
 
   updateRealisation(id) {
@@ -104,10 +116,6 @@ export class UnitRealisationComponent implements OnInit {
         setTimeout(()=> {this.updateError = false, 3000});
       }
     })
-  }
-
-  onSubmit() {
-
   }
 
 }
