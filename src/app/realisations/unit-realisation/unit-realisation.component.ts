@@ -29,6 +29,11 @@ export class UnitRealisationComponent implements OnInit {
   updateError: boolean = false;
   updateErrorMessage: string = '';
 
+  deleteSuccess: boolean = false;
+  deleteSuccessMessage: string = '';
+  deleteError: boolean = false;
+  deleteErrorMessage: string = '';
+
   constructor(
     private formBuilder: FormBuilder,
     private realService: RealisationsService,
