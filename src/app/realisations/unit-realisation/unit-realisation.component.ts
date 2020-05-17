@@ -24,6 +24,9 @@ export class UnitRealisationComponent implements OnInit {
   fileUploaded: boolean = false;
   fileUrl: string = '';
 
+  errorImport: boolean = false;
+  errorImportMessage: string = '';
+
   updateOk: boolean = false;
   updateMessage: string = '';
   updateError: boolean = false;
@@ -44,8 +47,14 @@ export class UnitRealisationComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
     this.realService.getRealisationById(this.route.snapshot.params.id).subscribe((res: HttpResponse<Realisations>) => {
+      if (res.body.status == "success") {
       // @ts-ignore
       this.realisation = res.body.data;
+      }
+      else if (res.body.status == "error") {
+        this.errorImport = true;
+        this.errorImportMessage = res.body.message;
+      }
     })
     // @ts-ignore
     this.realService.getCategories().subscribe((res: HttpResponse<RealisationsCategories[]>) => this.Categories = res.body.data);
@@ -86,12 +95,11 @@ export class UnitRealisationComponent implements OnInit {
       if(res.body.status == "success") {
         this.deleteSuccess = true;
         this.deleteSuccessMessage = res.body.message;
-        setTimeout(()=> {this.deleteSuccess = false; this.router.navigate(['/admin','realisations']), 3000});
       }
       else if (res.body.status == "error") {
         this.deleteError = true;
         this.deleteErrorMessage = res.body.message;
-        setTimeout(() => {this.deleteError = false}, 3000);
+        setTimeout(() => {this.deleteError = false, 3000});
       }
     })
   }
