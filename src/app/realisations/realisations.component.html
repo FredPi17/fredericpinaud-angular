@@ -1,1 +1,192 @@
-<p>realisations works!</p>
+<br>
+
+<div class="container-fluid">
+    <h4>Réalisations</h4>
+<div class="row">
+    <div class="col-4">
+      <div class="card">
+        <form [formGroup]="realForm" (ngSubmit)="onSubmit()">
+          <div class="card-header">
+            Ajouter une réalisation
+          </div>
+          <div class="card-body">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" aria-describedby="type">Type</span>
+              </div>
+              <select class="form-control" aria-describedby="type" id="type" formControlName="type">
+                <option *ngFor="let type of Types" [ngValue]="type.name">{{type.name}}</option>
+              </select>
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" aria-describedby="titre">Titre</span>
+              </div>
+              <input type="text" class="form-control" id="titre" formControlName="titre">
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" aria-describedby="categorie">Categorie</span>
+              </div>
+              <select class="form-control" id="categorie" id="categorie" formControlName="categorie">
+                <option *ngFor="let cat of Categories" [ngValue]="cat.name">{{cat.name}}</option>
+              </select>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" aria-describedby="image">Image</span>
+                </div>
+                <div class="custom-file">
+                    <input type="file" (change)="detectFile($event)" class="custom-file-input" id="image"
+                           accept="image/*">
+                    <label class="custom-file-label" for="image">Sélectionner image...</label>
+                </div>
+                <p class="text-success" *ngIf="fileUploaded">Image chargée</p>
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="realForm.invalid">Créer</button>
+          </div>
+        </form>
+        <div class="alert alert-success" *ngIf="newRealisation">
+            {{newRealisationMessage}}
+        </div>
+        <div class="alert alert-danger" *ngIf="newRealisationError">
+            {{newRealisationErrorMessage}}
+        </div>
+      </div>
+    </div>
+  
+    <div class="col-8">
+      <div class="card">
+        <div class="card-header">Liste des réalisations</div>
+        <div class="card-body">
+          <table class="table">
+            <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Type</th>
+              <th scope="col">Titre</th>
+              <th scope="col">Catégorie</th>
+              <th scope=col>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let r of realisations">
+              <th scope="{{r.id}}">{{r.id}}</th>
+              <td>{{r.type}}</td>
+              <td>{{r.titre}}</td>
+              <td>{{r.categorie}}</td>
+              <td>
+                <button class="btn btn-success" [routerLink]="['/admin', 'realisation', r.id]">Modifier</button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+      <div class="col">
+            <div class="card">
+              <form [formGroup]="realTypeForm" (ngSubmit)="onSubmitType()">
+                <div class="card-header">
+                  Ajouter un type
+                </div>
+                <div class="card-body">
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" aria-describedby="nom">Nom</span>
+                    </div>
+                    <input type="text" class="form-control" id="nom" formControlName="nom">
+                  </div>
+                  <button type="submit" class="btn btn-primary" [disabled]="realTypeForm.invalid">Créer</button>
+                </div>
+              </form>
+          </div>
+          <br>
+          <div class="alert alert-success" *ngIf="newType">
+              {{newTypeMessage}}
+          </div>
+          <div class="alert alert-danger" *ngIf="errorType">
+              {{errorTypeMessage}}
+          </div>
+      </div>
+      <div class="col">
+            <div class="card">
+              <div class="card-header">Liste des types</div>
+              <div class="card-body">
+                <table class="table">
+                  <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let t of Types">
+                    <th scope="{{t.id}}">{{t.id}}</th>
+                    <td>{{t.name}}</td>
+                    <td>
+                      <button class="btn btn-success" [routerLink]="['/admin', 'realisations', 'type', t.id]">Modifier</button>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+          </div>
+      </div>
+      <div class="col">
+        <div class="card">
+            <form [formGroup]="realCatForm" (ngSubmit)="onSubmitCat()">
+              <div class="card-header">
+                Ajouter une catégorie
+              </div>
+              <div class="card-body">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" aria-describedby="nom">Nom</span>
+                  </div>
+                  <input type="text" class="form-control" id="nom" formControlName="nom">
+                </div>
+                <button type="submit" class="btn btn-primary" [disabled]="realCatForm.invalid">Créer</button>
+              </div>
+            </form>
+            <br>
+            <div class="alert alert-success" *ngIf="newCat">
+                {{newCatMessage}}
+            </div>
+            <div class="alert alert-danger" *ngIf="errorCat">
+                {{errorCatMessage}}
+            </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+            <div class="card-header">Liste des catégories</div>
+            <div class="card-body">
+              <table class="table">
+                <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Nom</th>
+                  <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let c of Categories">
+                  <th scope="{{c.id}}">{{c.id}}</th>
+                  <td>{{c.name}}</td>
+                  <td>
+                    <button class="btn btn-success" [routerLink]="['/admin', 'realisations', 'categorie', c.id]">Modifier</button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+        </div>
+      </div>
+  </div>
+  </div>
+  

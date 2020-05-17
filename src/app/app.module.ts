@@ -25,6 +25,7 @@ import {UnitSoftComponent} from './cv-tiles/soft-skill/unit-soft/unit-soft.compo
 import {UnitSkillComponent} from './cv-tiles/skill/unit-skill/unit-skill.component';
 import {UnitSoftTypeComponent} from './cv-tiles/soft-skill/unit-soft-type/unit-soft-type.component';
 import { RealisationsComponent } from './realisations/realisations.component';
+import { UnitRealisationComponent } from './realisations/unit-realisation/unit-realisation.component';
 
 const appRoutes: Routes = [
   {path: 'admin', canActivate: [AuthGuardService], component: AdminComponent},
@@ -35,9 +36,10 @@ const appRoutes: Routes = [
   {path: 'admin/cv/soft/type/:id', canActivate: [AuthGuardService], component: UnitSoftTypeComponent},
   {path: 'admin/cv/skill/:id', canActivate: [AuthGuardService], component: UnitSkillComponent},
   {path: 'admin/realisations', canActivate: [AuthGuardService], component: RealisationsComponent},
+  {path: 'admin/realisation/:id', canActivate: [AuthGuardService], component: UnitRealisationComponent},
   {path: 'auth/signup', component: SignupComponent},
   {path: 'auth/signin', component: SigninComponent},
-  {path: '', component: CvComponent, pathMatch: 'full'},
+  {path: '', component: CvComponent},
   {path: '**', redirectTo: '/'}
 ];
 
@@ -62,14 +64,11 @@ const appRoutes: Routes = [
     UnitSkillComponent,
     UnitSoftTypeComponent,
     RealisationsComponent,
+    UnitRealisationComponent,
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes, {
-      scrollPositionRestoration: 'enabled', // or 'top'
-      anchorScrolling: 'enabled',
-      scrollOffset: [0, 64] // [x, y] - adjust scroll offset
-    }),
+    RouterModule.forRoot(appRoutes),
     ReactiveFormsModule,
     HttpClientModule
   ],

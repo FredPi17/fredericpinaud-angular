@@ -11,7 +11,8 @@ export class CvComponent implements OnInit {
 
     contactForm: FormGroup;
 
-    constructor(private formBuilder: FormBuilder) {
+    constructor(
+        private formBuilder: FormBuilder) {
     }
 
     ngOnInit() {

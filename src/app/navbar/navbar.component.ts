@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {AuthService} from '../services/auth.service';
-import {Router} from '@angular/router';
-
+import {Router, ActivatedRoute} from '@angular/router';
+import {Location} from '@angular/common';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -12,18 +12,29 @@ export class NavbarComponent implements OnInit {
 
   public username: string;
   href: string;
+  url: boolean;
   signOutForm: FormGroup;
   signedIn: boolean;
+  visible: boolean;
 
   constructor(private authService: AuthService,
               private formBuilder: FormBuilder,
-              private router: Router) {
-  }
+              private router: Router,
+              private location: Location,
+              private activatedRoute: ActivatedRoute) {
+                router.events.subscribe(val => {
+                  if (location.path() != "") {
+                    this.url = true
+                  }
+                  else {
+                    this.url = false;
+                  }
+                })
+              }
 
   ngOnInit(): void {
     this.username = sessionStorage.getItem('username');
     this.signedIn = this.authService.getConnectionStatus();
-    this.href = this.router.url;
     this.signOutForm = this.formBuilder.group(
       this.signOutForm = this.formBuilder.group(
         {
@@ -35,7 +46,6 @@ export class NavbarComponent implements OnInit {
 
   onSubmit() {
     this.authService.signOut();
-
   }
-
+  
 }
