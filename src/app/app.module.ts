@@ -40,6 +40,7 @@ const appRoutes: Routes = [
   {path: 'admin/cv/skill/:id', canActivate: [AuthGuardService], component: UnitSkillComponent},
   {path: 'admin/realisations', canActivate: [AuthGuardService], component: RealisationsComponent},
   {path: 'admin/realisation/:id', canActivate: [AuthGuardService], component: UnitRealisationComponent},
+  {path: 'admin/blog', canActivate: [AuthGuardService], component: BlogListComponent},
   {path: 'admin/blog/new', canActivate: [AuthGuardService], component: BlogComponent},
   {path: 'auth/signup', component: SignupComponent},
   {path: 'auth/signin', component: SigninComponent},
@@ -70,7 +71,6 @@ const appRoutes: Routes = [
     RealisationsComponent,
     UnitRealisationComponent,
     BlogComponent,
-    BlogListComponent,
   ],
   imports: [
     BrowserModule,
