@@ -27,9 +27,9 @@ export class UnitRealisationComponent implements OnInit {
   errorImport: boolean = false;
   errorImportMessage: string = '';
 
-  updateOk: boolean = false;
+  updateOk?: boolean = false;
   updateMessage: string = '';
-  updateError: boolean = false;
+  updateError?: boolean = false;
   updateErrorMessage: string = '';
 
   deleteSuccess: boolean = false;
@@ -90,6 +90,7 @@ export class UnitRealisationComponent implements OnInit {
   }
 
   deleteRealisation(id) {
+    this.resetVariables();
     console.log("deleting realisation with id: ", id);
     this.realService.deleteRealisation(id).subscribe((res: HttpResponse<Realisations>) => {
       if(res.body.status == "success") {
@@ -105,6 +106,7 @@ export class UnitRealisationComponent implements OnInit {
   }
 
   updateRealisation(id) {
+    this.resetVariables();
     if (this.fileUrl == "") {
       this.fileUrl = this.realisation.image;
     }
@@ -115,20 +117,27 @@ export class UnitRealisationComponent implements OnInit {
     this.realService.updateRealisation(titre, type, categorie, image, id).subscribe((res: HttpResponse<Realisations>) => {
       console.log(res.body);
       if (res.body.status == 'success') {
+        console.log('update ok: ', res.body)
         // @ts-ignore
         this.realisation = res.body.data;
-        this.updateError = false;
         this.updateOk = true;
         this.updateMessage = res.body.message;
         setTimeout(()=> {this.updateOk = false, 3000});
       }
       else if (res.body.status == 'error') {
-        this.updateOk = false;
+        console.log('update nok: ', res.body)
         this.updateError = true;
         this.updateErrorMessage = res.body.message;
         setTimeout(()=> {this.updateError = false, 3000});
       }
     })
+  }
+
+  resetVariables() {
+    this.deleteSuccess = false;
+    this.deleteSuccess = false;
+    this.updateError = false;
+    this.updateOk = false;
   }
 
 }

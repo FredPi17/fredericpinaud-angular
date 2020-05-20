@@ -60,14 +60,14 @@
       <div *ngIf="updateOk" class="alert alert-success">
         {{updateMessage}}
       </div>
-      <div *ngIf="updateError" class="alert alert-error">
+      <div *ngIf="updateError" class="alert alert-danger">
         {{updateErrorMessage}}
       </div>
       <div *ngIf="deleteSuccess" class="alert alert-success">
         {{deleteSuccessMessage}}
         <button type="button" class="btn btn-default" [routerLink]="['/admin', 'realisations']">&#8592; Retour</button> 
       </div>
-      <div *ngIf="deleteError" class="alert alert-error">
+      <div *ngIf="deleteError" class="alert alert-danger">
         {{deleteErrorMessage}}
       </div>
     </form>
