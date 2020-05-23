@@ -71,6 +71,7 @@ const appRoutes: Routes = [
     RealisationsComponent,
     UnitRealisationComponent,
     BlogComponent,
+    BlogListComponent
   ],
   imports: [
     BrowserModule,

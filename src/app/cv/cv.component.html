@@ -847,34 +847,30 @@
                     <div class="col col-d-12 col-t-12 col-m-12">
                       <div class="group-val">
                         <input type="text" name="name" placeholder="Votre nom" formControlName="name"/>
-                        <div *ngIf="contactForm.get('name').invalid">Doit être supérieur à 5 caractères</div>
                       </div>
                     </div>
                     <div class="col col-d-12 col-t-12 col-m-12">
                       <div class="group-val">
                         <input type="text" name="email" placeholder="Votre email" formControlName="email"/>
-                        <div *ngIf="contactForm.get('email').invalid">L'adresse mail n'est pas valide</div>
                       </div>
                     </div>
                     <div class="col col-d-12 col-t-12 col-m-12">
                       <div class="group-val">
                         <input name="subject" placeholder="Pourquoi me contactez-vous ?" formControlName="subject"/>
-                        <div *ngIf="contactForm.get('subject').invalid">Doit être supérieur à 5 caractères</div>
                       </div>
                     </div>
                     <div class="col col-d-12 col-t-12 col-m-12">
                       <div class="group-val">
                         <textarea name="message" placeholder="Votre message" formControlName="message"></textarea>
-                        <div *ngIf="contactForm.get('message').invalid">Doit être supérieur à 10 caractères</div>
                       </div>
                     </div>
                   </div>
                   <!-- TODO: Passer le bouton du gris au vert quand les champs du formulaire sont remplis -->
                   <div class="align-left">
-                    <input type="submit" class="button"><span class="arrow"></span>
+                    <input type="submit" class="button" [disabled]="contactForm.invalid"><span class="arrow"></span>
                   </div>
                 </form>
-                <div class="alert-success">
+                <div class="alert-success" *ngIf="send">
                   <p>Merci ! Votre message a bien été envoyé.</p>
                 </div>
               </div>
