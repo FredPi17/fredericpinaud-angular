@@ -63,7 +63,7 @@ export class SigninComponent implements OnInit {
       this.wrongCredential = false;
       this.wrongCredentialMessage = '';
       this.signedInMessage = result.message;
-      setTimeout(()=> {this.signinInUser(result)}, 2000);
+      setTimeout(()=> {this.signinInUser(result)}, 1500);
     }
   }
 
@@ -72,7 +72,7 @@ export class SigninComponent implements OnInit {
     sessionStorage.setItem('username', result.username);
     sessionStorage.setItem('email', result.email);
     sessionStorage.setItem('id', result.id);
-    this.router.navigate(['/admin']);
+    this.router.navigate(['/admin/user']);
   }
 
 
